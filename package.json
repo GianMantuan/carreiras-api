@@ -1,0 +1,36 @@
+{
+  "name": "integrado-carreiras",
+  "version": "1.0.0",
+  "description": "Integrado Carreiras API",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/body-parser": "^1.19.0",
+    "@types/cors": "^2.8.7",
+    "@types/express": "^4.17.7",
+    "@types/helmet": "^0.0.47",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/node": "^14.0.27",
+    "ts-node": "8.10.2",
+    "ts-node-dev": "^1.0.0-pre.57",
+    "typescript": "3.9.7"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "class-validator": "^0.12.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.3.0",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.3.0",
+    "typeorm": "0.2.25"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "start": "ts-node-dev --respawn --transpile-only ./src/infra/server.ts",
+    "prod": "tsc && node ./build/app.js",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
+  }
+}
