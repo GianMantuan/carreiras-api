@@ -1,14 +1,9 @@
 import { Request, Response } from "express";
-import { Repository, getRepository } from "typeorm";
 import { container } from "tsyringe";
-import { validate } from "class-validator";
 
-import Usuario from "../entity/Usuario";
-import TipoUsuario from "../entity/TipoUsuario";
-import Util from "../utils";
 import UserService from "../services/UserService";
 
-class UserController {
+export default class UserController {
   public async getAll(req: Request, res: Response): Promise<Response> {
     try {
       const userService = container.resolve(UserService);
@@ -58,5 +53,3 @@ class UserController {
     }
   }
 }
-
-export default UserController;

@@ -3,8 +3,6 @@ import {
   PrimaryGeneratedColumn,
   Column,
   Unique,
-  ManyToMany,
-  JoinTable,
   OneToMany,
   OneToOne,
   JoinColumn,
@@ -12,7 +10,6 @@ import {
 
 import Contato from "./Contato";
 import TipoUsuario from "./TipoUsuario";
-import Tipo from "./Tipo";
 
 @Entity("usuario")
 @Unique(["login"])

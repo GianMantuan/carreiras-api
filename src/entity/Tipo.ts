@@ -3,11 +3,9 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
-  ManyToMany,
   JoinColumn,
 } from "typeorm";
 import TipoUsuario from "./TipoUsuario";
-import Usuario from "./Usuario";
 
 @Entity("tipo")
 export default class Tipo {

@@ -1,12 +1,4 @@
-import {
-  Entity,
-  PrimaryColumn,
-  Column,
-  Unique,
-  OneToOne,
-  JoinColumn,
-} from "typeorm";
-import Usuario from "./Usuario";
+import { Entity, PrimaryColumn, Column, Unique } from "typeorm";
 
 @Entity("contato")
 @Unique(["usuarioId"])
@@ -36,7 +28,7 @@ export default class Contato {
   numero: string;
 
   @Column()
-  complemento: string;
+  complemento?: string;
 
   @Column()
   cidade: string;

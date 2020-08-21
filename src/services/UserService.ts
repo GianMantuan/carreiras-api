@@ -2,14 +2,13 @@ import { injectable, inject, container } from "tsyringe";
 import { Repository, getRepository } from "typeorm";
 import Usuario from "../entity/Usuario";
 import Util from "../utils";
-import UserTypeController from "../controller/UserTypeController";
-import UserTypeService from "./UserTypeService";
+import UserTypeService from "./UserRoleService";
 
 interface IUser {
   usuarioId?: number;
   login: string;
   senha: string;
-  tipoId: number;
+  tipoId?: number;
 }
 @injectable()
 export default class UserService {
@@ -60,11 +59,11 @@ export default class UserService {
         senha: this.util.hasPassword(senha),
       });
 
-      await userTypeService.add({ usuarioId, tipoId });
+      await userTypeService.add(usuarioId, Array(tipoId));
     } catch (error) {
       console.log(error);
+      throw new Error(error);
     }
-    return;
   }
 
   public async update() {}

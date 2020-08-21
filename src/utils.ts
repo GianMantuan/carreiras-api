@@ -1,4 +1,5 @@
 import * as bcrypt from "bcryptjs";
+import moment from "moment";
 
 export default class Util {
   public hasPassword(password: any): string {
@@ -10,5 +11,9 @@ export default class Util {
     password: string
   ): boolean {
     return bcrypt.compareSync(unencryptedPassword, password);
+  }
+
+  public dateConvert(date: string) {
+    return moment(date, "DD/MM/YYYY", true).format();
   }
 }
