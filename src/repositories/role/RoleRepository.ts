@@ -1,17 +1,14 @@
-import { injectable, inject, container } from "tsyringe";
 import { Repository, getRepository } from "typeorm";
-import Tipo from "../entity/Tipo";
 
-interface IRole {
-  tipoId?: number;
-  descricao: string;
-}
-@injectable()
-export default class RoleService {
-  constructor(
-    @inject(Tipo)
-    private _roleRepository: Repository<Tipo>
-  ) {
+import Tipo from "../../entity/Tipo";
+import IRoleRepository from "./IRoleRepository";
+
+import { IRoleDTO } from "../dtos";
+
+export default class RoleRepository implements IRoleRepository {
+  private _roleRepository: Repository<Tipo>;
+
+  constructor() {
     this._roleRepository = getRepository(Tipo);
   }
 
@@ -25,7 +22,7 @@ export default class RoleService {
     }
   }
 
-  public async add(role: IRole): Promise<Tipo> {
+  public async add(role: IRoleDTO): Promise<Tipo> {
     try {
       if (role.tipoId) {
         let type = await this._roleRepository.findOne({

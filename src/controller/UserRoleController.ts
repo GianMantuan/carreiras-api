@@ -1,14 +1,15 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import UserRoleService from "../services/UserRoleService";
+import UserRoleSaveService from "../services/userRole/UserRoleSaveService";
+import UserRoleGetAllService from "../services/userRole/UserRoleGetAllService";
 
 export default class UserRoleController {
-  public async getByUserId(req: Request, res: Response): Promise<Response> {
+  public async getById(req: Request, res: Response): Promise<Response> {
     const { usuarioId } = req.params;
 
     try {
-      const userRoleService = container.resolve(UserRoleService);
+      const userRoleService = container.resolve(UserRoleGetAllService);
       return res.status(200).send(await userRoleService.all(Number(usuarioId)));
     } catch (error) {
       return res.status(404).send("User not found");
@@ -16,9 +17,9 @@ export default class UserRoleController {
   }
 
   public async save(req: Request, res: Response): Promise<Response> {
-    try {
-      const userRoleService = container.resolve(UserRoleService);
+    const userRoleService = container.resolve(UserRoleSaveService);
 
+    try {
       return res
         .status(201)
         .send(
@@ -26,18 +27,6 @@ export default class UserRoleController {
         );
     } catch (error) {
       return res.status(400).send(error);
-    }
-  }
-
-  public async remove(req: Request, res: Response) {
-    try {
-      const userRoleService = container.resolve(UserRoleService);
-
-      await userRoleService.delete(req.body.tipos);
-      res.status(204).send("User Type Deleted");
-    } catch (error) {
-      console.log(error.message);
-      res.status(404).send(error);
     }
   }
 }

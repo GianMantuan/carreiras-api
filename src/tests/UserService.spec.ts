@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import UserService from "../services/UserService";
 import Usuario from "../entity/Usuario";
 import { Repository, getRepository } from "typeorm";

@@ -5,7 +5,7 @@ import RoleController from "../controller/RoleController";
 const router = Router();
 const roleController = new RoleController();
 
-router.get("/", roleController.getAll);
+router.get("/", roleController.all);
 router.post("/", roleController.save);
 router.delete("/:tipoId", roleController.remove);
 

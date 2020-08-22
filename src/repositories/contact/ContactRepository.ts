@@ -1,46 +1,31 @@
-import { injectable, inject, container } from "tsyringe";
 import { Repository, getRepository } from "typeorm";
-import Contato from "../entity/Contato";
-import Util from "../utils";
 
-interface IContact {
-  usuarioId?: number;
-  nome: string;
-  email: string;
-  telefoneResidencial?: string;
-  telefoneComercial?: string;
-  telefoneCelular: string;
-  logradouro: string;
-  numero: string;
-  complemento?: string;
-  cidade: string;
-  estado: string;
-  dataNascimento: string;
-  estadoCivil: string;
-  nacionalidade: string;
-}
+import Contato from "../../entity/Contato";
+import IContactRepository from "./IContactRepository";
 
-@injectable()
-export default class ContactService {
+import Util from "../../utils";
+import { IContactDTO } from "../dtos";
+
+export default class ContactRepository implements IContactRepository {
+  private _contactRepository: Repository<Contato>;
   private util: Util;
 
-  constructor(
-    @inject(Contato)
-    private _contactRepository: Repository<Contato>
-  ) {
+  constructor() {
     this.util = new Util();
     this._contactRepository = getRepository(Contato);
   }
 
   public async get(usuarioId: number): Promise<Contato | undefined> {
     try {
-      return await this._contactRepository.findOne({ where: { usuarioId } });
+      return await this._contactRepository.findOne({
+        where: { usuarioId },
+      });
     } catch (error) {
       throw new Error(error);
     }
   }
 
-  public async add(usuarioId: number, contact: IContact) {
+  public async add(usuarioId: number, contact: IContactDTO) {
     try {
       const userContact = await this.get(usuarioId);
 

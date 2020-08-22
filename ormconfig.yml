@@ -6,7 +6,20 @@ default:
   password: sysadmin
   database: int_carreiras
   logging: true
-  dropSchema: true
+  entities:
+    - src/entity/*.ts
+  migrations:
+    - src/migration/*.ts
+
+test:
+  type: postgres
+  host: localhost
+  port: 5432
+  username: sysadmin
+  password: sysadmin
+  database: int_carreiras
+  schema: test
+  logging: true
   entities:
     - src/entity/*.ts
   migrations:

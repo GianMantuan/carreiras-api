@@ -1,25 +1,18 @@
-import { injectable, inject, container } from "tsyringe";
 import { Repository, getRepository } from "typeorm";
-import Usuario from "../entity/Usuario";
-import Util from "../utils";
-import UserTypeService from "./UserRoleService";
 
-interface IUser {
-  usuarioId?: number;
-  login: string;
-  senha: string;
-  tipoId?: number;
-}
-@injectable()
-export default class UserService {
-  private util: Util;
+import IUserRepository from "./IUserRepository";
+import Usuario from "../../entity/Usuario";
 
-  constructor(
-    @inject(Usuario)
-    private _userRepository: Repository<Usuario>
-  ) {
-    this.util = new Util();
+import Util from "../../utils";
+import { IUserDTO } from "../dtos";
+
+export default class UserRepository implements IUserRepository {
+  private _userRepository: Repository<Usuario>;
+  private _util: Util;
+
+  constructor() {
     this._userRepository = getRepository(Usuario);
+    this._util = new Util();
   }
 
   public async all(): Promise<Usuario[]> {
@@ -45,8 +38,7 @@ export default class UserService {
     }
   }
 
-  public async add({ login, senha, tipoId }: IUser) {
-    const userTypeService = container.resolve(UserTypeService);
+  public async add({ login, senha }: IUserDTO): Promise<Usuario> {
     let user = await this._userRepository.findOne({ where: { login } });
 
     if (user) {
@@ -54,27 +46,23 @@ export default class UserService {
     }
 
     try {
-      const { usuarioId } = await this._userRepository.save({
+      const user = await this._userRepository.save({
         login,
-        senha: this.util.hasPassword(senha),
+        senha: this._util.hasPassword(senha),
       });
 
-      await userTypeService.add(usuarioId, Array(tipoId));
+      return user;
     } catch (error) {
       console.log(error);
       throw new Error(error);
     }
   }
 
-  public async update() {}
-
-  public async delete(usuarioId: number) {
+  public async delete(usuarioId: number): Promise<Usuario> {
     let user = await this._userRepository.findOneOrFail({
       where: { usuarioId },
     });
 
-    await this._userRepository.remove(user);
-
-    return;
+    return await this._userRepository.remove(user);
   }
 }

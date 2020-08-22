@@ -1,17 +1,14 @@
-import { injectable, inject } from "tsyringe";
 import { Repository, getRepository } from "typeorm";
-import TipoUsuario from "../entity/TipoUsuario";
 
-interface IUserRole {
-  tipoId: number;
-}
+import TipoUsuario from "../../entity/TipoUsuario";
+import IUserRolseRepository from "./IUserRoleRepository";
 
-@injectable()
-export default class UserRoleService {
-  constructor(
-    @inject(TipoUsuario)
-    private _userRoleRepository: Repository<TipoUsuario>
-  ) {
+import { IUserRoleDTO } from "../dtos";
+
+export default class UserRoleRepository implements IUserRolseRepository {
+  private _userRoleRepository: Repository<TipoUsuario>;
+
+  constructor() {
     this._userRoleRepository = getRepository(TipoUsuario);
   }
 
@@ -21,7 +18,7 @@ export default class UserRoleService {
 
   public async add(
     usuarioId: number,
-    userRoles: Array<IUserRole>
+    tipoId: Array<IUserRoleDTO>
   ): Promise<TipoUsuario[]> {
     try {
       const roles = await this.all(usuarioId);
@@ -30,9 +27,9 @@ export default class UserRoleService {
         await this.delete(roles);
       }
 
-      userRoles = userRoles.map((userRole) => ({ usuarioId, ...userRole }));
-      console.log(userRoles);
-      return await this._userRoleRepository.save(userRoles);
+      tipoId = tipoId.map((tipo) => ({ usuarioId, ...tipo }));
+
+      return await this._userRoleRepository.save(tipoId);
     } catch (error) {
       throw new Error(error);
     }

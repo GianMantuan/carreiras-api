@@ -1,4 +1,3 @@
-import "reflect-metadata";
 import express from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
@@ -17,4 +16,4 @@ app.use(bodyParser.json());
 // Setup all routes from routes folder
 app.use(routes);
 
-export { app };
+export default app;
