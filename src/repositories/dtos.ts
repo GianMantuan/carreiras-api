@@ -2,7 +2,6 @@ export interface IUserDTO {
   usuarioId?: number;
   login: string;
   senha: string;
-  // tipoId?: Array<number>;
 }
 
 export interface IRoleDTO {
@@ -12,6 +11,12 @@ export interface IRoleDTO {
 
 export interface IUserRoleDTO {
   tipoId: number;
+  usuarioId: number;
+}
+
+export interface IJobOfferTypeDTO {
+  tipoVagaId: number;
+  descricao: string;
 }
 
 export interface IContactDTO {
@@ -29,4 +34,27 @@ export interface IContactDTO {
   dataNascimento: string;
   estadoCivil: string;
   nacionalidade: string;
+}
+
+export interface ICurriculumDTO {
+  curriculoId?: number;
+  objetivo: string;
+}
+
+export interface IExperienceDTO {
+  experienciaId?: number;
+  curriculoId: number;
+  tipoVagaId: number;
+  cargo: string;
+  empresa: string;
+  localidade: string;
+  dataInicio: string;
+  dataFim?: string;
+  descricao: string;
+}
+
+export interface IErrorDTO {
+  pgCode?: string;
+  status?: number;
+  message?: string;
 }

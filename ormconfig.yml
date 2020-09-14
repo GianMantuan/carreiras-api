@@ -5,7 +5,6 @@ default:
   username: sysadmin
   password: sysadmin
   database: int_carreiras
-  logging: true
   entities:
     - src/entity/*.ts
   migrations:
@@ -17,9 +16,7 @@ test:
   port: 5432
   username: sysadmin
   password: sysadmin
-  database: int_carreiras
-  schema: test
-  logging: true
+  database: test
   entities:
     - src/entity/*.ts
   migrations:

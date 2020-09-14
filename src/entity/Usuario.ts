@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 
 import Contato from "./Contato";
+import Curriculo from "./Curriculo";
 import TipoUsuario from "./TipoUsuario";
 
 @Entity("usuario")
@@ -29,5 +30,9 @@ export default class Usuario {
 
   @OneToOne(() => Contato, (contato) => contato.usuarioId)
   @JoinColumn({ name: "usuarioId" })
-  contato: Contato[];
+  contato: Contato;
+
+  @OneToOne(() => Curriculo, (curriculo) => curriculo.curriculoId)
+  @JoinColumn({ name: "usuarioId" })
+  curriculo: Curriculo;
 }

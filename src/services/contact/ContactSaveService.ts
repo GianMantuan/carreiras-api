@@ -12,7 +12,7 @@ export default class ContactSaveService {
     private _contactRepository: IContactRepository
   ) {}
 
-  public async add(usuarioId: number, contact: IContactDTO): Promise<Contato> {
-    return await this._contactRepository.add(usuarioId, contact);
+  public async add(contact: IContactDTO): Promise<Contato> {
+    return await this._contactRepository.add(contact);
   }
 }

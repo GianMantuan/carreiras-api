@@ -24,13 +24,6 @@ export default class RoleRepository implements IRoleRepository {
 
   public async add(role: IRoleDTO): Promise<Tipo> {
     try {
-      if (role.tipoId) {
-        let type = await this._roleRepository.findOne({
-          where: { tipoId: role.tipoId },
-        });
-        Object.assign(type, role);
-      }
-
       return await this._roleRepository.save(role);
     } catch (error) {
       console.log(error);
