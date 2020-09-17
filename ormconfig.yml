@@ -5,6 +5,7 @@ default:
   username: sysadmin
   password: sysadmin
   database: int_carreiras
+  logging: true
   entities:
     - src/entity/*.ts
   migrations:

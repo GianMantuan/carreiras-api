@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
+
 import JobOfferTypeDeleteService from "../services/jobOfferType/JobOfferTypeDeleteService";
 import JobOfferTypeGetAllService from "../services/jobOfferType/JobOfferTypeGetAllSerivce";
 import JobOfferTypeSaveService from "../services/jobOfferType/JobOfferTypeSaveService";

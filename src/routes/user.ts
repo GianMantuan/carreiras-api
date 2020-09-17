@@ -22,8 +22,8 @@ router.get("/:usuarioId/roles", userRoleController.getById);
 router.get("/:usuarioId/curriculum", curriculumController.getById);
 
 // Routes of User
-router.get("/", userController.all);
 router.get("/:login", userController.getByLogin);
+router.get("/", userController.all);
 router.post("/", userController.save);
 router.delete("/:usuarioId", userController.remove);
 

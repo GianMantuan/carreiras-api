@@ -20,11 +20,7 @@ export default class UserRoleController {
     const userRoleService = container.resolve(UserRoleSaveService);
 
     try {
-      return res
-        .status(201)
-        .send(
-          await userRoleService.add(Number(req.params.usuarioId), req.body)
-        );
+      return res.status(201).send(await userRoleService.add(req.body));
     } catch (error) {
       return res.status(400).send(error);
     }

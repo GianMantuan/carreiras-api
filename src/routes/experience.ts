@@ -6,6 +6,6 @@ const router = Router();
 const experienceController = new ExperienceController();
 
 router.get("/", experienceController.all);
-router.post("/", roleController.save);
+router.post("/", experienceController.save);
 
 export default router;

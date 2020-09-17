@@ -16,20 +16,17 @@ export default class UserRoleRepository implements IUserRolseRepository {
     return await this._userRoleRepository.find({ where: { usuarioId } });
   }
 
-  public async add(
-    usuarioId: number,
-    tipoId: Array<IUserRoleDTO>
-  ): Promise<TipoUsuario[]> {
+  public async add(userRole: Array<IUserRoleDTO>): Promise<TipoUsuario[]> {
     try {
-      const roles = await this.all(usuarioId);
+      // const roles = await this.all(usuarioId);
 
-      if (roles.length > 0) {
-        await this.delete(roles);
-      }
+      // if (roles.length > 0) {
+      //   await this.delete(roles);
+      // }
 
-      tipoId = tipoId.map((tipo) => ({ usuarioId, ...tipo }));
+      // tipoId = tipoId.map((tipo) => ({ usuarioId, ...tipo }));
 
-      return await this._userRoleRepository.save(tipoId);
+      return await this._userRoleRepository.save(userRole);
     } catch (error) {
       throw new Error(error);
     }

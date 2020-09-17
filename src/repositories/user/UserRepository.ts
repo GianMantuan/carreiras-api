@@ -18,14 +18,15 @@ export default class UserRepository implements IUserRepository {
   public async all(): Promise<Usuario[]> {
     return await this._userRepository.find({
       select: ["usuarioId", "login"],
-      relations: ["contato", "tipoUsuario", "tipoUsuario.tipo"],
+      relations: ["contato", "tipoUsuario", "tipoUsuario.tipo", "curriculo"],
     });
   }
 
   public async get(login: string): Promise<Usuario> {
+    console.log(login);
     return await this._userRepository.findOneOrFail({
       select: ["usuarioId", "login"],
-      relations: ["contato", "tipoUsuario", "tipoUsuario.tipo"],
+      relations: ["contato", "tipoUsuario", "tipoUsuario.tipo", "curriculo"],
       where: { login },
     });
   }

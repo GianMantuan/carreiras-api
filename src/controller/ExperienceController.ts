@@ -8,7 +8,6 @@ import ExperienceSaveService from "../services/experience/ExperienceSaveService"
 
 export default class ExperienceController {
   public async all(req: Request, res: Response): Promise<Response> {
-    const { curriculoId } = req.params;
     try {
       const experienceService = container.resolve(ExperienceGetAllService);
       return res.send(await experienceService.all());

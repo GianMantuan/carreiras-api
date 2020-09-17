@@ -12,10 +12,7 @@ export default class UserRoleSaveService {
     private _userRoleRepository: IUserRolseRepository
   ) {}
 
-  public async add(
-    usuarioId: number,
-    tipoId: Array<IUserRoleDTO>
-  ): Promise<TipoUsuario[]> {
-    return await this._userRoleRepository.add(usuarioId, tipoId);
+  public async add(userRole: Array<IUserRoleDTO>): Promise<TipoUsuario[]> {
+    return await this._userRoleRepository.add(userRole);
   }
 }

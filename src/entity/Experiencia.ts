@@ -5,11 +5,13 @@ import {
   JoinColumn,
   PrimaryGeneratedColumn,
   ManyToOne,
+  Unique,
 } from "typeorm";
 import Curriculo from "./Curriculo";
 import TipoVaga from "./TipoVaga";
 
 @Entity("experiencia")
+@Unique(["experienciaId"])
 export default class Experiencia {
   @PrimaryGeneratedColumn()
   experienciaId: number;
@@ -41,8 +43,4 @@ export default class Experiencia {
   @ManyToOne(() => Curriculo, (curriculo) => curriculo.curriculoId)
   @JoinColumn({ name: "curriculoId" })
   usuario: Curriculo;
-
-  @OneToMany(() => TipoVaga, (tipoVaga) => tipoVaga.tipoVagaId)
-  @JoinColumn({ name: "tipoVagaId" })
-  tipoVaga: TipoVaga;
 }

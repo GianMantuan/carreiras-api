@@ -53,6 +53,46 @@ export interface IExperienceDTO {
   descricao: string;
 }
 
+export interface ICertificateDTO {
+  certificadoId?: number;
+  curriculoId: number;
+  cloudStorageId: number;
+  nome: string;
+  organizacaoEmissora: string;
+  dataEmissao: string;
+  dataExpirar?: string;
+  url?: string;
+}
+
+export interface IEducationDTO {
+  formacaoId?: number;
+  curriculoId: number;
+  cloudStorageId: number;
+  instituicao: string;
+  formacao: string;
+  areaEstudo: string;
+  dataInicio: string;
+  dataFim?: string;
+}
+
+export interface IJobOfferDTO {
+  vagaId?: number;
+  tipoVagaId: number;
+  nome: number;
+  descricao: string;
+  empresa?: string;
+  salario?: number;
+  requisitosGerais: string;
+  requisitosEspecificos?: string;
+}
+
+export interface ICurriculumJobOfferDTO {
+  curriculoId: number;
+  vagaId: number;
+  selecionado: boolean;
+  motivo?: string;
+}
+
 export interface IErrorDTO {
   pgCode?: string;
   status?: number;

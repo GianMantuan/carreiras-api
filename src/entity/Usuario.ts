@@ -28,11 +28,10 @@ export default class Usuario {
   @JoinColumn({ name: "usuarioId" })
   tipoUsuario: TipoUsuario[];
 
+  @OneToOne(() => Curriculo, (curriculo) => curriculo.usuario)
+  curriculo: Curriculo;
+
   @OneToOne(() => Contato, (contato) => contato.usuarioId)
   @JoinColumn({ name: "usuarioId" })
   contato: Contato;
-
-  @OneToOne(() => Curriculo, (curriculo) => curriculo.curriculoId)
-  @JoinColumn({ name: "usuarioId" })
-  curriculo: Curriculo;
 }
