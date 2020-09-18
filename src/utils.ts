@@ -1,5 +1,5 @@
 import * as bcrypt from "bcryptjs";
-import moment from "moment";
+import { format } from "date-fns";
 
 export default class Util {
   public hasPassword(password: any): string {
@@ -14,6 +14,6 @@ export default class Util {
   }
 
   public dateConvert(date: string) {
-    return moment(date, "DD/MM/YYYY", true).format();
+    return format(new Date(date), "DD/MM/YYYY");
   }
 }
