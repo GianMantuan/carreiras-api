@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import JobOfferDeleteService from "../services/jobOffer/JobOfferDeleteService";
 import JobOfferGetAllService from "../services/jobOffer/JobOfferGetAllService";
 import JobOfferGetByIdService from "../services/jobOffer/JobOfferGetByIdService";
 import JobOfferSaveService from "../services/jobOffer/JobOfferSaveService";
+import JobOfferDeleteService from "../services/jobOffer/JobOfferDeleteService";
 
 export default class JobOfferController {
   public async all(req: Request, res: Response): Promise<Response> {
