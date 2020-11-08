@@ -1,9 +1,10 @@
 import { getRepository, Repository } from "typeorm";
 
 import CurriculoVaga from "../../entity/CurriculoVaga";
-import ICurriculumJobOfferRepository from "./ICurriculumJobOfferRepository";
 
-import { ICurriculumJobOfferDTO, IJobOfferDTO } from "../dtos";
+import ICurriculumJobOfferDTO from "./ICurriculumJobOfferDTO";
+// import IJobOfferDTO from "../jobOffer/IJobOfferDTO";
+import ICurriculumJobOfferRepository from "./ICurriculumJobOfferRepository";
 
 export default class CurriculumJobOfferRepository
   implements ICurriculumJobOfferRepository {

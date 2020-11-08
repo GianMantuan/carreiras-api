@@ -1,9 +1,9 @@
 import { injectable, inject } from "tsyringe";
 
 import Vagas from "../../entity/Vagas";
-import IJobOfferRepository from "../../repositories/jobOffer/IJobOfferRepository";
 
-import { IJobOfferDTO } from "../../repositories/dtos";
+import IJobOfferDTO from "../../repositories/jobOffer/IJobOfferDTO";
+import IJobOfferRepository from "../../repositories/jobOffer/IJobOfferRepository";
 
 @injectable()
 export default class JobOfferSaveService {

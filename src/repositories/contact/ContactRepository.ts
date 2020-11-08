@@ -1,10 +1,11 @@
 import { Repository, getRepository } from "typeorm";
 
 import Contato from "../../entity/Contato";
+
+import IContactDTO from "./IContactDTO";
 import IContactRepository from "./IContactRepository";
 
 import Util from "../../utils";
-import { IContactDTO } from "../dtos";
 
 export default class ContactRepository implements IContactRepository {
   private _contactRepository: Repository<Contato>;

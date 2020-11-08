@@ -1,9 +1,9 @@
 import { injectable, inject } from "tsyringe";
 
 import Usuario from "../../entity/Usuario";
-import IUserRepository from "../../repositories/user/IUserRepository";
 
-import { IUserDTO } from "../../repositories/dtos";
+import IUserDTO from "../../repositories/user/IUserDTO";
+import IUserRepository from "../../repositories/user/IUserRepository";
 
 @injectable()
 export default class UserSaveService {

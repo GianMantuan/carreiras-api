@@ -1,5 +1,5 @@
 import { Router } from "express";
-// import auth from "./auth";
+import auth from "./auth";
 import user from "./user";
 import contact from "./contact";
 import role from "./role";
@@ -10,7 +10,7 @@ import jobOfferType from "./jobOfferType";
 
 const routes = Router();
 
-// routes.use("/auth", auth);
+routes.use("/auth", auth);
 routes.use("/user", user);
 routes.use("/role", role);
 routes.use("/contact", contact);

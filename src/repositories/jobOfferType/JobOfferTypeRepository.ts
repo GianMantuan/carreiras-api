@@ -1,9 +1,9 @@
 import { getRepository, Repository } from "typeorm";
 
 import TipoVaga from "../../entity/TipoVaga";
-import IJobOfferTypeRepository from "./IJobOfferTypeRepository";
 
-import { IJobOfferTypeDTO } from "../dtos";
+import IJobOfferTypeDTO from "./IJobOfferTypeDTO";
+import IJobOfferTypeRepository from "./IJobOfferTypeRepository";
 
 export default class JobOfferTypeRepository implements IJobOfferTypeRepository {
   private _jobOfferTypeRepository: Repository<TipoVaga>;

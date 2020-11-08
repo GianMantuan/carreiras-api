@@ -1,5 +1,5 @@
 import Contato from "../../entity/Contato";
-import { IContactDTO } from "../dtos";
+import IContactDTO from "./IContactDTO";
 
 export default interface IContactRepository {
   get(usuarioId: number): Promise<Contato | undefined>;

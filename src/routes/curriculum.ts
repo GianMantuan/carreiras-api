@@ -20,7 +20,7 @@ router.get("/:curriculoId/experiences", experienceController.getById);
 // Routes of certificate
 router.get("/:curriculoId/certificates", certificateController.getById);
 
-// Routes of graduation
+// Routes of education
 router.get("/:curriculoId/educations", educationController.getById);
 
 // Routes of Curriculum - JobOffer

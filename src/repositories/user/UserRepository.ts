@@ -1,10 +1,12 @@
 import { Repository, getRepository } from "typeorm";
 
-import IUserRepository from "./IUserRepository";
 import Usuario from "../../entity/Usuario";
 
+import IUserDTO from "./IUserDTO";
+import IUserRepository from "./IUserRepository";
+
 import Util from "../../utils";
-import { IUserDTO } from "../dtos";
+import TipoUsuario from "../../entity/TipoUsuario";
 
 export default class UserRepository implements IUserRepository {
   private _userRepository: Repository<Usuario>;
@@ -23,7 +25,6 @@ export default class UserRepository implements IUserRepository {
   }
 
   public async get(login: string): Promise<Usuario> {
-    console.log(login);
     return await this._userRepository.findOneOrFail({
       select: ["usuarioId", "login"],
       relations: ["contato", "tipoUsuario", "tipoUsuario.tipo", "curriculo"],
@@ -31,10 +32,17 @@ export default class UserRepository implements IUserRepository {
     });
   }
 
+  public async credential(login: string): Promise<Usuario> {
+    return await this._userRepository.findOneOrFail({
+      relations: ["contato", "tipoUsuario"],
+      where: { login },
+    });
+  }
+
   public async add({ login, senha }: IUserDTO): Promise<Usuario> {
     return await this._userRepository.save({
       login,
-      senha: this._util.hasPassword(senha),
+      senha: this._util.hashPassword(senha),
     });
   }
 

@@ -2,7 +2,7 @@ import { getRepository, Repository } from "typeorm";
 
 import Certificado from "../../entity/Certificado";
 
-import { ICertificateDTO } from "../dtos";
+import ICertificateDTO from "./ICertificateDTO";
 import ICertificateRepository from "./ICertificateRepository";
 
 export default class CertificateRepository implements ICertificateRepository {

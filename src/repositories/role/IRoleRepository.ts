@@ -1,5 +1,5 @@
 import Tipo from "../../entity/Tipo";
-import { IRoleDTO } from "../dtos";
+import IRoleDTO from "./IRoleDTO";
 
 export default interface IRoleRepository {
   all(): Promise<Tipo[]>;

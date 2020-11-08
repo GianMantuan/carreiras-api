@@ -1,6 +1,6 @@
 import CurriculoVaga from "../../entity/CurriculoVaga";
 
-import { ICurriculumJobOfferDTO } from "../dtos";
+import ICurriculumJobOfferDTO from "./ICurriculumJobOfferDTO";
 
 export default interface ICurriculumJobOfferRepository {
   getById(curriculoId: number): Promise<CurriculoVaga[]>;

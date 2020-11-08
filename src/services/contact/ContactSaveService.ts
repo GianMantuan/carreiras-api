@@ -1,9 +1,9 @@
 import { injectable, inject } from "tsyringe";
 
 import Contato from "../../entity/Contato";
-import IContactRepository from "../../repositories/contact/IContactRepository";
 
-import { IContactDTO } from "../../repositories/dtos";
+import IContactDTO from "../../repositories/contact/IContactDTO";
+import IContactRepository from "../../repositories/contact/IContactRepository";
 
 @injectable()
 export default class ContactSaveService {

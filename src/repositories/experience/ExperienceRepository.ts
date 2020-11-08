@@ -1,6 +1,8 @@
 import { getRepository, Repository } from "typeorm";
+
 import Experiencia from "../../entity/Experiencia";
-import { IExperienceDTO } from "../dtos";
+
+import IExperienceDTO from "./IExperienceDTO";
 import IExperienceRepository from "./IExperienceRepository";
 
 export default class ExperienceRepository implements IExperienceRepository {

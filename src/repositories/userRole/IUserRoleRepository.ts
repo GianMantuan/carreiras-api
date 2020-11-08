@@ -1,5 +1,5 @@
 import TipoUsuario from "../../entity/TipoUsuario";
-import { IUserRoleDTO } from "../dtos";
+import IUserRoleDTO from "./IUserRoleDTO";
 
 export default interface IUserRolseRepository {
   all(usuarioId: number): Promise<TipoUsuario[]>;

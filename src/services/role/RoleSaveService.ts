@@ -1,9 +1,9 @@
 import { injectable, inject } from "tsyringe";
 
 import Tipo from "../../entity/Tipo";
-import IRoleRepository from "../../repositories/role/IRoleRepository";
 
-import { IRoleDTO } from "../../repositories/dtos";
+import IRoleDTO from "../../repositories/role/IRoleDTO";
+import IRoleRepository from "../../repositories/role/IRoleRepository";
 
 @injectable()
 export default class RoleSaveService {

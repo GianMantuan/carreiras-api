@@ -6,7 +6,9 @@
     "outDir": "./build",
     "removeComments": true,
     "moduleResolution": "node",
-    // "paths": {},
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "resolveJsonModule": true,
     "strict": true,
     "strictPropertyInitialization": false,

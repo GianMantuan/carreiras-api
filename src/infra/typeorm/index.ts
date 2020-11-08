@@ -6,9 +6,7 @@ import {
 } from "typeorm";
 
 export default class ConnectionPostgres {
-  async create(
-    connectionName: "default" | "test" = "default"
-  ): Promise<Connection> {
+  async create(connectionName: "default"): Promise<Connection> {
     const connectionOptions = await getConnectionOptions(connectionName);
     const connection = await createConnection({
       ...connectionOptions,

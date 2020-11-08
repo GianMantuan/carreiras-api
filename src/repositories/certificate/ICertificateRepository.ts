@@ -1,5 +1,5 @@
 import Certificado from "../../entity/Certificado";
-import { ICertificateDTO } from "../dtos";
+import ICertificateDTO from "./ICertificateDTO";
 
 export default interface IEducationRepository {
   all(): Promise<Certificado[]>;

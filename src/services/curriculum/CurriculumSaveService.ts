@@ -1,8 +1,9 @@
 import { injectable, inject } from "tsyringe";
 
-import ICurriculumRepository from "../../repositories/curriculum/ICurriculumRepository";
 import Curriculo from "../../entity/Curriculo";
-import { ICurriculumDTO } from "../../repositories/dtos";
+
+import ICurriculumDTO from "../../repositories/curriculum/ICurriculumDTO";
+import ICurriculumRepository from "../../repositories/curriculum/ICurriculumRepository";
 
 @injectable()
 export default class CurriculumSaveRepository {

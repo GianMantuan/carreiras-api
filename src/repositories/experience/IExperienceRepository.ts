@@ -1,5 +1,5 @@
 import Experiencia from "../../entity/Experiencia";
-import { IExperienceDTO } from "../dtos";
+import IExperienceDTO from "./IExperienceDTO";
 
 export default interface IExperienceRepository {
   all(): Promise<Experiencia[]>;

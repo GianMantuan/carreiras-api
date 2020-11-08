@@ -2,7 +2,7 @@ import { getRepository, Repository } from "typeorm";
 
 import Formacao from "../../entity/Formacao";
 
-import { IEducationDTO } from "../dtos";
+import IEducationDTO from "./IEducationDTO";
 import IEducationRepository from "./IEducationRepository";
 
 export default class EducationRepository implements IEducationRepository {

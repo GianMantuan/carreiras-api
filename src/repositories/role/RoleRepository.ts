@@ -1,9 +1,9 @@
 import { Repository, getRepository } from "typeorm";
 
 import Tipo from "../../entity/Tipo";
-import IRoleRepository from "./IRoleRepository";
 
-import { IRoleDTO } from "../dtos";
+import IRoleDTO from "./IRoleDTO";
+import IRoleRepository from "./IRoleRepository";
 
 export default class RoleRepository implements IRoleRepository {
   private _roleRepository: Repository<Tipo>;

@@ -1,9 +1,9 @@
 import { injectable, inject } from "tsyringe";
 
 import Certificado from "../../entity/Certificado";
-import ICertificateRepository from "../../repositories/certificate/ICertificateRepository";
 
-import { ICertificateDTO } from "../../repositories/dtos";
+import ICertificateDTO from "../../repositories/certificate/ICertificateDTO";
+import ICertificateRepository from "../../repositories/certificate/ICertificateRepository";
 
 @injectable()
 export default class CertificateSaveService {

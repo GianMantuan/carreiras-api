@@ -1,5 +1,5 @@
 import TipoVaga from "../../entity/TipoVaga";
-import { IJobOfferTypeDTO } from "../dtos";
+import IJobOfferTypeDTO from "./IJobOfferTypeDTO";
 
 export default interface IJobOfferTypeRepository {
   all(): Promise<TipoVaga[]>;

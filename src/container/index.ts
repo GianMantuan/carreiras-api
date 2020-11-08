@@ -73,7 +73,7 @@ container.registerSingleton<IJobOfferRepository>(
 );
 
 container.registerSingleton<IJobOfferTypeRepository>(
-  "JobOfferTypeREpository",
+  "JobOfferTypeRepository",
   JobOfferTypeRepository
 );
 

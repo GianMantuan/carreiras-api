@@ -21,7 +21,7 @@ export default class Curriculo {
   curriculoId: number;
 
   @Column()
-  objetivo: string;
+  descricao: string;
 
   @OneToOne(() => Usuario, (usuario) => usuario.curriculo)
   @JoinColumn({ name: "curriculoId" })

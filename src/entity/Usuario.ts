@@ -21,7 +21,7 @@ export default class Usuario {
   @Column()
   login: string;
 
-  @Column({ select: false })
+  @Column()
   senha: string;
 
   @OneToMany(() => TipoUsuario, (tipoUsuario) => tipoUsuario.usuario)

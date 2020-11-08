@@ -4,6 +4,7 @@ import { container } from "tsyringe";
 import JobOfferTypeDeleteService from "../services/jobOfferType/JobOfferTypeDeleteService";
 import JobOfferTypeGetAllService from "../services/jobOfferType/JobOfferTypeGetAllSerivce";
 import JobOfferTypeSaveService from "../services/jobOfferType/JobOfferTypeSaveService";
+import AppError from "../shared/AppError";
 
 export default class JobOfferTypeController {
   public async all(req: Request, res: Response): Promise<Response> {
@@ -20,7 +21,8 @@ export default class JobOfferTypeController {
       const jobOfferTypeSerivce = container.resolve(JobOfferTypeSaveService);
       return res.send(await jobOfferTypeSerivce.add(req.body));
     } catch (error) {
-      return res.status(409).send(error);
+      const errorMessage = new AppError(error).error(true);
+      return res.status(errorMessage.status || 409).send(errorMessage);
     }
   }
 
@@ -30,7 +32,8 @@ export default class JobOfferTypeController {
       const jobOfferTypeSerivce = container.resolve(JobOfferTypeDeleteService);
       return res.send(await jobOfferTypeSerivce.delete(Number(tipoVagaId)));
     } catch (error) {
-      return res.status(409).send(error);
+      const errorMessage = new AppError(error).error(true);
+      return res.status(errorMessage.status || 409).send(errorMessage);
     }
   }
 }

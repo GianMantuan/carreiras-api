@@ -1,6 +1,8 @@
 import { Repository, getRepository } from "typeorm";
+
 import Curriculo from "../../entity/Curriculo";
-import { ICurriculumDTO } from "../dtos";
+
+import ICurriculumDTO from "./ICurriculumDTO";
 import ICurriculumRepository from "./ICurriculumRepository";
 
 export default class CurriculumRepository implements ICurriculumRepository {

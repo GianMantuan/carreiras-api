@@ -1,5 +1,5 @@
 import Vagas from "../../entity/Vagas";
-import { IJobOfferDTO } from "../dtos";
+import IJobOfferDTO from "./IJobOfferDTO";
 
 export default interface IJobOfferRepository {
   all(): Promise<Vagas[]>;

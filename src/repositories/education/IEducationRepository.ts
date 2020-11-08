@@ -1,5 +1,5 @@
 import Formacao from "../../entity/Formacao";
-import { IEducationDTO } from "../dtos";
+import IEducationDTO from "./IEducationDTO";
 
 export default interface ICertificateRepository {
   all(): Promise<Formacao[]>;

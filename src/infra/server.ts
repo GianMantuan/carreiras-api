@@ -11,7 +11,7 @@ import path from "path";
 
 debug("integrado-carreiras:server");
 
-createConnections();
+createConnections().catch((error) => console.log(error));
 import "../container";
 
 const server = http.createServer(app);
