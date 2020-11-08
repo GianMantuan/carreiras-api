@@ -5,6 +5,7 @@ import UserGetAllService from "../services/user/UserGetAllService";
 import UserGetByIdService from "../services/user/UserGetByIdService";
 import UserSaveService from "../services/user/UserSaveService";
 import UserDeleteService from "../services/user/UserDeleteService";
+import AppError from "../shared/AppError";
 
 export default class UserController {
   public async all(req: Request, res: Response): Promise<Response> {
@@ -23,7 +24,10 @@ export default class UserController {
       const userService = container.resolve(UserGetByIdService);
       return res.status(200).send(await userService.get(login));
     } catch (error) {
-      return res.status(404).send("User not found");
+      const errorMessage = new AppError(error).error();
+      return res
+        .status(errorMessage.status || 404)
+        .json(errorMessage.message || "Usuário não encotrado");
     }
   }
 
@@ -34,19 +38,20 @@ export default class UserController {
       const userService = container.resolve(UserSaveService);
       return res.status(201).send(await userService.add({ login, senha }));
     } catch (error) {
-      return res.status(409).send(error || error.message);
+      const errorMessage = new AppError(error).error(true);
+      return res.status(errorMessage.status || 409).send(errorMessage);
     }
   }
 
-  public async remove(req: Request, res: Response): Promise<void> {
+  public async remove(req: Request, res: Response): Promise<Response> {
     const { usuarioId } = req.params;
 
     try {
       const userService = container.resolve(UserDeleteService);
-      res.status(204).send(await userService.delete(Number(usuarioId)));
+      return res.status(204).send(await userService.delete(Number(usuarioId)));
     } catch (error) {
-      console.log(error.message);
-      res.status(404).send(error);
+      const errorMessage = new AppError(error).error(true);
+      return res.status(errorMessage.status || 400).send(errorMessage);
     }
   }
 }

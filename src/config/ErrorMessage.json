@@ -1,0 +1,32 @@
+[
+  {
+    "pgCode": "08003",
+    "status": 503,
+    "message": "Conexão não existe"
+  },
+  {
+    "pgCode": "08006",
+    "status": 503,
+    "message": "Erro na Conexão"
+  },
+  {
+    "pgCode": "23502",
+    "status": 409,
+    "message": "Parâmetros obrigatórios não enviados"
+  },
+  {
+    "pgCode": "22007",
+    "status": 409,
+    "message": "Valor inválido para o tipo Data"
+  },
+  {
+    "pgCode": "23503",
+    "status": 409,
+    "message": "Erro ao vincular novos dados ao usuario"
+  },
+  {
+    "pgCode": "XX000",
+    "status": 503,
+    "message": "Erro interno do servidor"
+  }
+]

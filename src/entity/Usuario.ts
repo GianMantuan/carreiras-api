@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 
 import Contato from "./Contato";
+import Curriculo from "./Curriculo";
 import TipoUsuario from "./TipoUsuario";
 
 @Entity("usuario")
@@ -20,14 +21,17 @@ export default class Usuario {
   @Column()
   login: string;
 
-  @Column({ select: false })
+  @Column()
   senha: string;
 
   @OneToMany(() => TipoUsuario, (tipoUsuario) => tipoUsuario.usuario)
   @JoinColumn({ name: "usuarioId" })
   tipoUsuario: TipoUsuario[];
 
+  @OneToOne(() => Curriculo, (curriculo) => curriculo.usuario)
+  curriculo: Curriculo;
+
   @OneToOne(() => Contato, (contato) => contato.usuarioId)
   @JoinColumn({ name: "usuarioId" })
-  contato: Contato[];
+  contato: Contato;
 }

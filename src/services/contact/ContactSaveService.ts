@@ -1,9 +1,9 @@
 import { injectable, inject } from "tsyringe";
 
 import Contato from "../../entity/Contato";
-import IContactRepository from "../../repositories/contact/IContactRepository";
 
-import { IContactDTO } from "../../repositories/dtos";
+import IContactDTO from "../../repositories/contact/IContactDTO";
+import IContactRepository from "../../repositories/contact/IContactRepository";
 
 @injectable()
 export default class ContactSaveService {
@@ -12,7 +12,7 @@ export default class ContactSaveService {
     private _contactRepository: IContactRepository
   ) {}
 
-  public async add(usuarioId: number, contact: IContactDTO): Promise<Contato> {
-    return await this._contactRepository.add(usuarioId, contact);
+  public async add(contact: IContactDTO): Promise<Contato> {
+    return await this._contactRepository.add(contact);
   }
 }

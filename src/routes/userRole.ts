@@ -5,7 +5,6 @@ import { checkJwt } from "../middlewares/checkJwt";
 const router = Router();
 const userRoleController = new UserRoleController();
 
-router.get("/user/:usuarioId/roles", userRoleController.getById);
-router.post("/user/:usuarioId", userRoleController.save);
+router.post("/", userRoleController.save);
 
 export default router;

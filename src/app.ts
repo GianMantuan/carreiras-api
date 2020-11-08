@@ -9,7 +9,16 @@ import routes from "./routes";
 const app = express();
 
 // Call middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:8080",
+      "https://localhost:8080",
+      "http://localhost",
+    ],
+    credentials: false,
+  })
+);
 app.use(helmet());
 app.use(bodyParser.json());
 

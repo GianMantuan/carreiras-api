@@ -10,7 +10,7 @@ export default class UserGetByIdService {
     private _userRepository: IUserRepository
   ) {}
 
-  public async get(login: string): Promise<Usuario | undefined> {
+  public async get(login: string): Promise<Usuario> {
     return await this._userRepository.get(login);
   }
 }

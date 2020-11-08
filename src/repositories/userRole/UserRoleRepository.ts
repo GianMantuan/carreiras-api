@@ -1,9 +1,9 @@
 import { Repository, getRepository } from "typeorm";
 
 import TipoUsuario from "../../entity/TipoUsuario";
-import IUserRolseRepository from "./IUserRoleRepository";
 
-import { IUserRoleDTO } from "../dtos";
+import IUserRoleDTO from "./IUserRoleDTO";
+import IUserRolseRepository from "./IUserRoleRepository";
 
 export default class UserRoleRepository implements IUserRolseRepository {
   private _userRoleRepository: Repository<TipoUsuario>;
@@ -16,20 +16,15 @@ export default class UserRoleRepository implements IUserRolseRepository {
     return await this._userRoleRepository.find({ where: { usuarioId } });
   }
 
-  public async add(
-    usuarioId: number,
-    tipoId: Array<IUserRoleDTO>
-  ): Promise<TipoUsuario[]> {
+  public async add(userRole: Array<IUserRoleDTO>): Promise<TipoUsuario[]> {
     try {
-      const roles = await this.all(usuarioId);
+      const roles = await this.all(userRole[0].usuarioId);
 
       if (roles.length > 0) {
         await this.delete(roles);
       }
 
-      tipoId = tipoId.map((tipo) => ({ usuarioId, ...tipo }));
-
-      return await this._userRoleRepository.save(tipoId);
+      return await this._userRoleRepository.save(userRole);
     } catch (error) {
       throw new Error(error);
     }

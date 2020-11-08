@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
+import AppError from "../shared/AppError";
 
 import ContactGetByIdService from "../services/contact/ContactGetByIdService";
 import ContactSaveService from "../services/contact/ContactSaveService";
+import { IErrorDTO } from "../repositories/dtos";
 
 export default class ContactController {
   public async getById(req: Request, res: Response): Promise<Response> {
@@ -17,13 +19,13 @@ export default class ContactController {
   }
 
   public async save(req: Request, res: Response): Promise<Response> {
-    const contactService = container.resolve(ContactSaveService);
-
     try {
-      await contactService.add(Number(req.params.usuarioId), req.body);
-      return res.status(201).send("User Contact created");
+      const contactService = container.resolve(ContactSaveService);
+
+      return res.status(201).send(await contactService.add(req.body));
     } catch (error) {
-      return res.status(409).send(error || error.message);
+      const errorMessage = new AppError(error).error(true);
+      return res.status(errorMessage.status || 400).send(errorMessage);
     }
   }
 }

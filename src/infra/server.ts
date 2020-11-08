@@ -1,5 +1,7 @@
 import "reflect-metadata";
 
+import { createConnections } from "typeorm";
+
 import app from "../app";
 import http from "http";
 import https from "https";
@@ -9,7 +11,7 @@ import path from "path";
 
 debug("integrado-carreiras:server");
 
-import "./typeorm";
+createConnections().catch((error) => console.log(error));
 import "../container";
 
 const server = http.createServer(app);
@@ -54,6 +56,6 @@ function onError(error: any) {
 
 function onListening() {
   const addr = server.address();
-  const bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
-  debug("Listening on " + bind);
+  // const bind = typeof addr === "string" ? `pipe ${addr}` : `port ${addr.port}`;
+  debug("Listening on " + addr);
 }

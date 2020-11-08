@@ -1,37 +1,40 @@
 import { Request, Response } from "express";
-import * as jwt from "jsonwebtoken";
-import { Repository } from "typeorm";
+import { container } from "tsyringe";
 
-import Usuario from "../entity/Usuario";
-import config from "../config/config";
+import AuthLoginService from "../services/auth/AuthLoginService";
+import UserGetCredentialService from "../services/user/UserGetCredentialService";
+import AppError from "../shared/AppError";
 
-class AuthController {
-  private userRepository: Repository<Usuario>;
-
+export default class AuthController {
   public async login(req: Request, res: Response) {
-    let { login, senha } = req.body;
-    let user: Usuario;
-
     try {
-      user = await this.userRepository.findOneOrFail({
-        where: { login },
-      });
+      const authService = container.resolve(AuthLoginService);
+      const userService = container.resolve(UserGetCredentialService);
 
-      if (user.checkValidUnencryptedPassword(senha)) {
-        res.send(
-          jwt.sign(
-            { usuarioId: user.usuarioId, login: user.login },
-            config.jwtSecret,
-            { expiresIn: "1h" }
-          )
-        );
+      const {
+        usuarioId,
+        contato,
+        tipoUsuario,
+        login,
+        senha,
+      } = await userService.credential(req.body.login);
+      const token = await authService.login({ login, senha }, req.body);
+
+      if (token) {
+        return res.status(200).send({
+          usuarioId,
+          token,
+          contato,
+          tipoUsuario,
+        });
+      } else {
+        throw new Error();
       }
-      res.status(401).send();
-      return;
     } catch (error) {
-      res.status(401).send();
+      const errorMessage = new AppError(error).error();
+      return res
+        .status(errorMessage.status || 404)
+        .json(errorMessage.message || "Usuário ou Senha inválido");
     }
   }
 }
-
-export default AuthController;

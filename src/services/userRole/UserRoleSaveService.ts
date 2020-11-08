@@ -1,9 +1,9 @@
 import { injectable, inject } from "tsyringe";
 
-import IUserRolseRepository from "../../repositories/userRole/IUserRoleRepository";
 import TipoUsuario from "../../entity/TipoUsuario";
 
-import { IUserRoleDTO } from "../../repositories/dtos";
+import IUserRoleDTO from "../../repositories/userRole/IUserRoleDTO";
+import IUserRolseRepository from "../../repositories/userRole/IUserRoleRepository";
 
 @injectable()
 export default class UserRoleSaveService {
@@ -12,10 +12,7 @@ export default class UserRoleSaveService {
     private _userRoleRepository: IUserRolseRepository
   ) {}
 
-  public async add(
-    usuarioId: number,
-    tipoId: Array<IUserRoleDTO>
-  ): Promise<TipoUsuario[]> {
-    return await this._userRoleRepository.add(usuarioId, tipoId);
+  public async add(userRole: Array<IUserRoleDTO>): Promise<TipoUsuario[]> {
+    return await this._userRoleRepository.add(userRole);
   }
 }

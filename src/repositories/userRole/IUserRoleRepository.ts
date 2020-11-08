@@ -1,8 +1,8 @@
 import TipoUsuario from "../../entity/TipoUsuario";
-import { IUserRoleDTO } from "../dtos";
+import IUserRoleDTO from "./IUserRoleDTO";
 
 export default interface IUserRolseRepository {
   all(usuarioId: number): Promise<TipoUsuario[]>;
-  add(usuarioId: number, data: Array<IUserRoleDTO>): Promise<TipoUsuario[]>;
+  add(userRole: Array<IUserRoleDTO>): Promise<TipoUsuario[]>;
   delete(userRoles: Array<TipoUsuario>): Promise<TipoUsuario[]>;
 }
