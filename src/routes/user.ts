@@ -13,18 +13,18 @@ const userRoleController = new UserRoleController();
 const curriculumController = new CurriculumController();
 
 // Routes of Contact
-router.get("/:usuarioId/contact", contactController.getById);
+router.get("/:usuarioId/contact", checkJwt, contactController.getById);
 
 //Routes of UserRole
-router.get("/:usuarioId/roles", userRoleController.getById);
+router.get("/:usuarioId/roles", checkJwt, userRoleController.getById);
 
 // Routes of Curriculum
-router.get("/:usuarioId/curriculum", curriculumController.getById);
+router.get("/:usuarioId/curriculum", checkJwt, curriculumController.getById);
 
 // Routes of User
-router.get("/:login", userController.getByLogin);
-router.get("/", userController.all);
+router.get("/:login", checkJwt, userController.getByLogin);
+router.get("/", checkJwt, userController.all);
 router.post("/", userController.save);
-router.delete("/:usuarioId", userController.remove);
+router.delete("/:usuarioId", checkJwt, userController.remove);
 
 export default router;

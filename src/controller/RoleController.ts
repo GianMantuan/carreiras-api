@@ -3,7 +3,7 @@ import { container } from "tsyringe";
 
 import RoleGetAllService from "../services/role/RoleGetAllService";
 import RoleSaveService from "../services/role/RoleSaveService";
-import UserDeleteService from "../services/user/UserDeleteService";
+import RoleDeleteService from "../services/role/RoleDeleteService";
 
 export default class RoleController {
   public async all(req: Request, res: Response): Promise<Response> {
@@ -28,7 +28,7 @@ export default class RoleController {
     const { tipoId } = req.params;
 
     try {
-      const roleService = container.resolve(UserDeleteService);
+      const roleService = container.resolve(RoleDeleteService);
       res.status(204).send(await roleService.delete(Number(tipoId)));
     } catch (error) {
       console.log(error.message);

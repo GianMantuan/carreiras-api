@@ -12,7 +12,7 @@ export default class UserSaveService {
     private _userRepository: IUserRepository
   ) {}
 
-  public async add({ login, senha }: IUserDTO): Promise<Usuario> {
-    return await this._userRepository.add({ login, senha });
+  public async add(user: IUserDTO): Promise<Usuario> {
+    return await this._userRepository.add(user);
   }
 }

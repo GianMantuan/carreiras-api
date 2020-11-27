@@ -32,11 +32,9 @@ export default class UserController {
   }
 
   public async save(req: Request, res: Response): Promise<Response> {
-    const { login, senha } = req.body;
-
     try {
       const userService = container.resolve(UserSaveService);
-      return res.status(201).send(await userService.add({ login, senha }));
+      return res.status(201).send(await userService.add(req.body));
     } catch (error) {
       const errorMessage = new AppError(error).error(true);
       return res.status(errorMessage.status || 409).send(errorMessage);

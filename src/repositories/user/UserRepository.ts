@@ -6,7 +6,7 @@ import IUserDTO from "./IUserDTO";
 import IUserRepository from "./IUserRepository";
 
 import Util from "../../utils";
-import TipoUsuario from "../../entity/TipoUsuario";
+import { userInfo } from "os";
 
 export default class UserRepository implements IUserRepository {
   private _userRepository: Repository<Usuario>;
@@ -19,31 +19,32 @@ export default class UserRepository implements IUserRepository {
 
   public async all(): Promise<Usuario[]> {
     return await this._userRepository.find({
-      select: ["usuarioId", "login"],
-      relations: ["contato", "tipoUsuario", "tipoUsuario.tipo", "curriculo"],
+      select: ["usuarioId", "login"],      
+      relations: ["tipo", "contato", "curriculo"],
     });
   }
 
   public async get(login: string): Promise<Usuario> {
     return await this._userRepository.findOneOrFail({
       select: ["usuarioId", "login"],
-      relations: ["contato", "tipoUsuario", "tipoUsuario.tipo", "curriculo"],
+      relations: ["contato", "tipo", "curriculo"],
       where: { login },
     });
   }
 
-  public async credential(login: string): Promise<Usuario> {
-    return await this._userRepository.findOneOrFail({
-      relations: ["contato", "tipoUsuario"],
+  public async credential({ login, senha }: IUserDTO): Promise<String> {
+    const user = await this._userRepository.findOneOrFail({
       where: { login },
     });
+
+    if (this._util.validadePassword(senha, user.senha)) return this._util.createToken(user)
+    else throw new Error()
+
   }
 
-  public async add({ login, senha }: IUserDTO): Promise<Usuario> {
-    return await this._userRepository.save({
-      login,
-      senha: this._util.hashPassword(senha),
-    });
+  public async add(user: IUserDTO): Promise<Usuario> {
+    user.senha = this._util.hashPassword(user.senha)
+    return await this._userRepository.save(user);
   }
 
   public async delete(usuarioId: number): Promise<Usuario> {

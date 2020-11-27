@@ -6,16 +6,14 @@
     "outDir": "./build",
     "removeComments": true,
     "moduleResolution": "node",
-    "paths": {
-      "@/*": ["src/*"]
-    },
     "resolveJsonModule": true,
+    "skipLibCheck": true,
     "strict": true,
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowJs": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
   }
 }
