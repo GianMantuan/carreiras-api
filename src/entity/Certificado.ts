@@ -9,7 +9,7 @@ import {
 
 import Curriculo from "./Curriculo";
 
-@Entity("certificado")
+@Entity("certificados")
 @Unique(["certificadoId"])
 export default class Certificado {
   @PrimaryGeneratedColumn()
@@ -34,9 +34,12 @@ export default class Certificado {
   dataExpirar?: string;
 
   @Column()
-  url?: string;
+  credencialUrl?: string;
+
+  @Column()
+  credencialId?: string;
 
   @ManyToOne(() => Curriculo, (curriculo) => curriculo.curriculoId)
   @JoinColumn({ name: "curriculoId" })
-  usuario: Curriculo;
+  certificado: Curriculo;
 }

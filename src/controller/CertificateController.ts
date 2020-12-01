@@ -17,11 +17,11 @@ export default class CertificateController {
   }
 
   public async getById(req: Request, res: Response): Promise<Response> {
-    const { curriculoId } = req.params;
+    const { certificadoId } = req.params;
 
     try {
       const certificateService = container.resolve(CertificateGetByIdService);
-      return res.send(await certificateService.getById(Number(curriculoId)));
+      return res.send(await certificateService.getById(Number(certificadoId)));
     } catch (error) {
       return res.status(404).send(error);
     }
@@ -32,6 +32,7 @@ export default class CertificateController {
       const certificateService = container.resolve(CertificateSaveService);
       return res.send(await certificateService.add(req.body));
     } catch (error) {
+      console.log(error)
       return res.status(409).send(error);
     }
   }

@@ -10,7 +10,7 @@ export default class EducationGetByIdService {
     private _educationRepository: IEducationRepository
   ) {}
 
-  public async getById(curriculoId: number): Promise<Formacao[]> {
-    return await this._educationRepository.getById(curriculoId);
+  public async getById(formacaoId: number): Promise<Formacao[]> {
+    return await this._educationRepository.getById(formacaoId);
   }
 }

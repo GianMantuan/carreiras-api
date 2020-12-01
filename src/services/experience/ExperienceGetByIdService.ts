@@ -10,7 +10,7 @@ export default class ExperienceGetByIdService {
     private _experienceRepository: IExperienceRepository
   ) {}
 
-  public async getById(curriculoId: number): Promise<Experiencia[]> {
-    return await this._experienceRepository.getById(curriculoId);
+  public async getById(experienciaId: number): Promise<Experiencia[]> {
+    return await this._experienceRepository.getById(experienciaId);
   }
 }

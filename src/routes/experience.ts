@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { checkJwt } from "../middlewares/checkJwt";
 import ExperienceController from "../controller/ExperienceController";
+import { checkJwt } from "../middlewares/checkJwt";
 
 const router = Router();
 const experienceController = new ExperienceController();
 
-router.get("/", experienceController.all);
-router.post("/", experienceController.save);
+router.get("/", checkJwt, experienceController.all);
+router.get("/:experienciaId", checkJwt, experienceController.getById)
+router.post("/", checkJwt, experienceController.save);
+router.delete("/:experienciaId", checkJwt, experienceController.delete);
 
 export default router;

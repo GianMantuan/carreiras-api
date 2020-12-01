@@ -16,11 +16,12 @@ export default class EducationRepository implements IEducationRepository {
     return await this._educationRepository.find();
   }
 
-  public async getById(curriculoId: number): Promise<Formacao[]> {
-    return await this._educationRepository.find({ where: { curriculoId } });
+  public async getById(formacaoId: number): Promise<Formacao[]> {
+    return await this._educationRepository.find({ where: { formacaoId } });
   }
 
   public async add(formacao: IEducationDTO): Promise<Formacao> {
+    console.log(formacao)
     return await this._educationRepository.save(formacao);
   }
 

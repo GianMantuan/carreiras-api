@@ -35,12 +35,12 @@ export default class Experiencia {
   dataInicio: string;
 
   @Column()
-  dataFim?: string;
+  dataTermino?: string;
 
   @Column()
   descricao: string;
 
   @ManyToOne(() => Curriculo, (curriculo) => curriculo.curriculoId)
   @JoinColumn({ name: "curriculoId" })
-  usuario: Curriculo;
+  curriculo: Curriculo;
 }

@@ -17,10 +17,10 @@ export default class ExperienceController {
   }
 
   public async getById(req: Request, res: Response): Promise<Response> {
-    const { curriculoId } = req.params;
+    const { experienciaId } = req.params;
     try {
       const experienceService = container.resolve(ExperienceGetByIdService);
-      return res.send(await experienceService.getById(Number(curriculoId)));
+      return res.send(await experienceService.getById(Number(experienciaId)));
     } catch (error) {
       return res.status(404).send(error);
     }

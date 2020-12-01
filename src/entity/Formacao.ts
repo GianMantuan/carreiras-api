@@ -25,7 +25,7 @@ export default class Formacao {
   instituicao: string;
 
   @Column()
-  formacao: string;
+  diploma: string;
 
   @Column()
   areaEstudo: string;
@@ -34,9 +34,9 @@ export default class Formacao {
   dataInicio: string;
 
   @Column()
-  dataFim?: string;
+  dataTermino?: string;
 
   @ManyToOne(() => Curriculo, (curriculo) => curriculo.curriculoId)
   @JoinColumn({ name: "curriculoId" })
-  usuario: Curriculo;
+  formacao: Curriculo;
 }

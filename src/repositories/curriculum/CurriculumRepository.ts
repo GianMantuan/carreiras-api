@@ -12,8 +12,9 @@ export default class CurriculumRepository implements ICurriculumRepository {
     this._curriculumRepository = getRepository(Curriculo);
   }
 
-  public async get(curriculoId: number): Promise<Curriculo | undefined> {
-    return await this._curriculumRepository.findOne({
+  public async get(curriculoId: number): Promise<Curriculo> {
+    return await this._curriculumRepository.findOneOrFail({
+      relations: ["experiencia", "formacao", "certificado"],
       where: { curriculoId },
     });
   }

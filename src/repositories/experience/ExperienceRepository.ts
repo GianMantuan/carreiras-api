@@ -16,11 +16,12 @@ export default class ExperienceRepository implements IExperienceRepository {
     return await this._experienceRepository.find();
   }
 
-  public async getById(curriculoId: number): Promise<Experiencia[]> {
-    return await this._experienceRepository.find({ where: { curriculoId } });
+  public async getById(experienciaId: number): Promise<Experiencia[]> {
+    return await this._experienceRepository.find({ where: { experienciaId } });
   }
 
   public async add(experiencia: IExperienceDTO): Promise<Experiencia> {
+    console.log(experiencia)
     return await this._experienceRepository.save(experiencia);
   }
 

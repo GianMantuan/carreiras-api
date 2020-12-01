@@ -6,6 +6,6 @@ export default interface IExperienceDTO {
   empresa: string;
   localidade: string;
   dataInicio: string;
-  dataFim?: string;
+  dataTermino?: string;
   descricao: string;
 }

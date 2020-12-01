@@ -21,7 +21,7 @@ export default class ContactController {
   public async save(req: Request, res: Response): Promise<Response> {
     try {
       const contactService = container.resolve(ContactSaveService);
-
+      console.log(req.body)
       return res.status(201).send(await contactService.add(req.body));
     } catch (error) {
       const errorMessage = new AppError(error).error(true);

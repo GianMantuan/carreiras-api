@@ -5,6 +5,6 @@ import ContactController from "../controller/ContactController";
 const router = Router();
 const contactController = new ContactController();
 
-router.post("/", contactController.save);
+router.post("/", checkJwt, contactController.save);
 
 export default router;

@@ -6,6 +6,7 @@ import {
   PrimaryColumn,
   Unique,
   OneToOne,
+  ManyToMany,
 } from "typeorm";
 
 import Certificado from "./Certificado";
@@ -27,19 +28,16 @@ export default class Curriculo {
   @JoinColumn({ name: "curriculoId" })
   usuario: Usuario;
 
-  @OneToMany(() => Experiencia, (experiencia) => experiencia.curriculoId)
-  @JoinColumn({ name: "curriculoId" })
+  @OneToMany(() => Experiencia, (experiencia) => experiencia.curriculo)
   experiencia: Experiencia[];
 
-  @OneToMany(() => Certificado, (certificado) => certificado.curriculoId)
-  @JoinColumn({ name: "curriculoId" })
+  @OneToMany(() => Certificado, (certificado) => certificado.certificado)
   certificado: Certificado[];
 
-  @OneToMany(() => Formacao, (formacao) => formacao.curriculoId)
-  @JoinColumn({ name: "curriculoId" })
+  @OneToMany(() => Formacao, (formacao) => formacao.formacao)
   formacao: Formacao[];
 
-  @OneToMany(() => CurriculoVaga, (curriculoVaga) => curriculoVaga.curriculo)
-  @JoinColumn({ name: "curriculoId" })
-  curriculoVaga: CurriculoVaga[];
+  // @OneToMany(() => CurriculoVaga, (curriculoVaga) => curriculoVaga.curriculo)
+  // @JoinColumn({ name: "curriculoId" })
+  // curriculoVaga: CurriculoVaga[];
 }

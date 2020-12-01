@@ -17,11 +17,11 @@ export default class EducationController {
   }
 
   public async getById(req: Request, res: Response): Promise<Response> {
-    const { curriculoId } = req.params;
+    const { formacaoId } = req.params;
 
     try {
       const educationService = container.resolve(EducationGetByIdSerivce);
-      return res.send(await educationService.getById(Number(curriculoId)));
+      return res.send(await educationService.getById(Number(formacaoId)));
     } catch (error) {
       return res.status(404).send(error);
     }

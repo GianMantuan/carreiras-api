@@ -1,10 +1,10 @@
 export default interface IEducationDTO {
   formacaoId?: number;
   curriculoId: number;
-  cloudStorageId: number;
+  cloudStorageId?: number;
   instituicao: string;
-  formacao: string;
+  diploma: string;
   areaEstudo: string;
   dataInicio: string;
-  dataFim?: string;
+  dataTermino: string;
 }

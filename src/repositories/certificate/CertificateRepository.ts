@@ -16,17 +16,18 @@ export default class CertificateRepository implements ICertificateRepository {
     return await this._certificateRepository.find();
   }
 
-  public async getById(curriculoId: number): Promise<Certificado[]> {
-    return await this._certificateRepository.find({ where: { curriculoId } });
+  public async getById(certificadoId: number): Promise<Certificado[]> {
+    return await this._certificateRepository.find({ where: { certificadoId } });
   }
 
-  public async add(experiencia: ICertificateDTO): Promise<Certificado> {
-    return await this._certificateRepository.save(experiencia);
+  public async add(certificado: ICertificateDTO): Promise<Certificado> {
+    console.log(certificado)
+    return await this._certificateRepository.save(certificado);
   }
 
-  public async delete(experienciaId: number): Promise<Certificado> {
+  public async delete(certificadoId: number): Promise<Certificado> {
     const certificate = await this._certificateRepository.findOneOrFail({
-      where: { experienciaId },
+      where: { certificadoId },
     });
 
     return await this._certificateRepository.remove(certificate);
