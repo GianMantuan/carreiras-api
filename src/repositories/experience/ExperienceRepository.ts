@@ -21,7 +21,6 @@ export default class ExperienceRepository implements IExperienceRepository {
   }
 
   public async add(experiencia: IExperienceDTO): Promise<Experiencia> {
-    console.log(experiencia)
     return await this._experienceRepository.save(experiencia);
   }
 

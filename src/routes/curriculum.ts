@@ -25,6 +25,7 @@ router.get("/:curriculoId/educations", educationController.getById);
 
 // Routes of Curriculum - JobOffer
 router.get("/:curriculoId/jobs", curriculumJobOffer.getById);
+router.delete("/:curriculoId/jobs/:vagaId", curriculumJobOffer.delete)
 
 // Routes of Curriculum
 router.post("/", curriculumController.save);

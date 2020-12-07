@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 
 import JobOfferGetAllService from "../services/jobOffer/JobOfferGetAllService";
+import JobOfferGetCurriculumService from '../services/jobOffer/JobOfferGetCurriculumService'
 import JobOfferGetByIdService from "../services/jobOffer/JobOfferGetByIdService";
 import JobOfferSaveService from "../services/jobOffer/JobOfferSaveService";
 import JobOfferDeleteService from "../services/jobOffer/JobOfferDeleteService";
@@ -11,6 +12,15 @@ export default class JobOfferController {
     try {
       const jobOfferSerivce = container.resolve(JobOfferGetAllService);
       return res.send(await jobOfferSerivce.all());
+    } catch (error) {
+      return res.status(404).send(error);
+    }
+  }
+
+  public async getCurriculumJob(req: Request, res: Response): Promise<Response> {
+    try {
+      const jobOfferSerivce = container.resolve(JobOfferGetCurriculumService);
+      return res.send(await jobOfferSerivce.getCurriculumJob());
     } catch (error) {
       return res.status(404).send(error);
     }

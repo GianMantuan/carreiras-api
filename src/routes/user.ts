@@ -22,7 +22,8 @@ router.get("/:usuarioId/roles", checkJwt, userRoleController.getById);
 router.get("/:usuarioId/curriculum", checkJwt, curriculumController.getById);
 
 // Routes of User
-router.get("/:login", checkJwt, userController.getByLogin);
+router.get("/login/:login", checkJwt, userController.getByLogin);
+router.get("/usuarioId/:usuarioId", checkJwt, userController.getById);
 router.get("/", checkJwt, userController.all);
 router.post("/", userController.save);
 router.delete("/:usuarioId", checkJwt, userController.remove);

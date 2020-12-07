@@ -6,7 +6,6 @@ import IUserDTO from "./IUserDTO";
 import IUserRepository from "./IUserRepository";
 
 import Util from "../../utils";
-import { userInfo } from "os";
 
 export default class UserRepository implements IUserRepository {
   private _userRepository: Repository<Usuario>;
@@ -20,11 +19,19 @@ export default class UserRepository implements IUserRepository {
   public async all(): Promise<Usuario[]> {
     return await this._userRepository.find({
       select: ["usuarioId", "login"],      
-      relations: ["tipo", "contato", "curriculo"],
+      relations: ["tipo", "contato", "curriculo", "curriculo.experiencia", "curriculo.certificado", "curriculo.formacao"],
     });
   }
 
-  public async get(login: string): Promise<Usuario> {
+  public async getId(usuarioId: number): Promise<Usuario> {
+    return await this._userRepository.findOneOrFail({
+      select: ["usuarioId", "login"],
+      relations: ["contato", "curriculo", "curriculo.experiencia", "curriculo.certificado", "curriculo.formacao"],
+      where: { usuarioId },
+    });
+  }
+  
+  public async getLogin(login: string): Promise<Usuario> {
     return await this._userRepository.findOneOrFail({
       select: ["usuarioId", "login"],
       relations: ["contato", "tipo", "curriculo"],

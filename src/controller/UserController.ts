@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { container } from "tsyringe";
 
 import UserGetAllService from "../services/user/UserGetAllService";
+
+import UserGetByLoginService from "../services/user/UserGetByLoginService";
 import UserGetByIdService from "../services/user/UserGetByIdService";
 import UserSaveService from "../services/user/UserSaveService";
 import UserDeleteService from "../services/user/UserDeleteService";
@@ -17,12 +19,26 @@ export default class UserController {
     }
   }
 
+  public async getById(req: Request, res: Response): Promise<Response> {
+    const { usuarioId } = req.params;
+
+    try {
+      const userService = container.resolve(UserGetByIdService);
+      return res.status(200).send(await userService.getId(Number(usuarioId)));
+    } catch (error) {
+      const errorMessage = new AppError(error).error();
+      return res
+        .status(errorMessage.status || 404)
+        .json(errorMessage.message || "Usuário não encotrado");
+    }
+  }
+
   public async getByLogin(req: Request, res: Response): Promise<Response> {
     const { login } = req.params;
 
     try {
-      const userService = container.resolve(UserGetByIdService);
-      return res.status(200).send(await userService.get(login));
+      const userService = container.resolve(UserGetByLoginService);
+      return res.status(200).send(await userService.getLogin(login));
     } catch (error) {
       const errorMessage = new AppError(error).error();
       return res

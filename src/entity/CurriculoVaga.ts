@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, JoinColumn, ManyToOne, Column } from "typeorm";
+import { Entity, PrimaryColumn, JoinColumn, ManyToOne, Column, ManyToMany } from "typeorm";
 import Usuario from "./Usuario";
 import Tipo from "./Tipo";
 import Vagas from "./Vagas";
@@ -20,7 +20,7 @@ export default class CurriculoVaga {
 
   @ManyToOne(() => Vagas, (vagas) => vagas.vagaId)
   @JoinColumn({ name: "vagaId" })
-  vagas: Vagas;
+  vaga: Vagas;
 
   @ManyToOne(() => Curriculo, (curriculo) => curriculo.curriculoId)
   @JoinColumn({ name: "curriculoId" })

@@ -21,7 +21,6 @@ export default class CertificateRepository implements ICertificateRepository {
   }
 
   public async add(certificado: ICertificateDTO): Promise<Certificado> {
-    console.log(certificado)
     return await this._certificateRepository.save(certificado);
   }
 

@@ -5,9 +5,11 @@ import {
   PrimaryGeneratedColumn,
   Unique,
   OneToMany,
+  OneToOne,
 } from "typeorm";
 
 import CurriculoVaga from "./CurriculoVaga";
+import TipoVaga from "./TipoVaga";
 
 @Entity("vagas")
 @Unique(["vagaId"])
@@ -17,6 +19,9 @@ export default class Vagas {
 
   @Column()
   tipoVagaId: number;
+
+  @Column()
+  usuarioId: number;
 
   @Column()
   nome: number;
@@ -36,7 +41,10 @@ export default class Vagas {
   @Column()
   requisitosEspecificos?: string;
 
-  @OneToMany(() => CurriculoVaga, (curriculoVaga) => curriculoVaga.vagas)
+  @OneToOne(() => TipoVaga, (tipoVaga) => tipoVaga.tipoVagaId)
+  tipoVaga: TipoVaga;
+
+  @OneToMany(() => CurriculoVaga, (curriculoVaga) => curriculoVaga.vaga)
   @JoinColumn({ name: "vagaId" })
   curriculoVaga: CurriculoVaga[];
 }

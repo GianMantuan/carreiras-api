@@ -4,13 +4,13 @@ import IUserRepository from "../../repositories/user/IUserRepository";
 import Usuario from "../../entity/Usuario";
 
 @injectable()
-export default class UserGetByIdService {
+export default class UserGetByLoginService {
   constructor(
     @inject("UserRepository")
     private _userRepository: IUserRepository
   ) {}
 
-  public async getId(id: number): Promise<Usuario> {
-    return await this._userRepository.getId(id);
+  public async getLogin(login: string): Promise<Usuario> {
+    return await this._userRepository.getLogin(login);
   }
 }

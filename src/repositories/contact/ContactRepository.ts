@@ -25,7 +25,7 @@ export default class ContactRepository implements IContactRepository {
   public async add(contact: IContactDTO) {
     if (contact.dataNascimento)
       contact.dataNascimento = this._util.dateConvert(contact.dataNascimento);
-    console.log(contact)
+
     return await this._contactRepository.save(contact);
   }
 }

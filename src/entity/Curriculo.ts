@@ -7,6 +7,7 @@ import {
   Unique,
   OneToOne,
   ManyToMany,
+  JoinTable,
 } from "typeorm";
 
 import Certificado from "./Certificado";
@@ -14,6 +15,7 @@ import CurriculoVaga from "./CurriculoVaga";
 import Experiencia from "./Experiencia";
 import Formacao from "./Formacao";
 import Usuario from "./Usuario";
+import Vagas from "./Vagas";
 
 @Entity("curriculo")
 @Unique(["curriculoId"])
@@ -37,7 +39,6 @@ export default class Curriculo {
   @OneToMany(() => Formacao, (formacao) => formacao.formacao)
   formacao: Formacao[];
 
-  // @OneToMany(() => CurriculoVaga, (curriculoVaga) => curriculoVaga.curriculo)
-  // @JoinColumn({ name: "curriculoId" })
-  // curriculoVaga: CurriculoVaga[];
+  @OneToMany(() => CurriculoVaga, (curriculoVaga) => curriculoVaga.curriculo)
+  curriculoVaga: CurriculoVaga[];
 }

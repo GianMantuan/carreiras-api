@@ -4,13 +4,13 @@ import CurriculoVaga from "../../entity/CurriculoVaga";
 import ICurriculumJobOfferRepository from "../../repositories/curriculumJobOffer/ICurriculumJobOfferRepository";
 
 @injectable()
-export default class CurriculumJobOfferGetByIdService {
+export default class CurriculumJobOfferAllService {
   constructor(
     @inject("CurriculumJobOfferRepository")
     private _curriculumJobOfferRepository: ICurriculumJobOfferRepository
   ) {}
 
-  public async getById(curriculoId: number): Promise<CurriculoVaga[]> {
-    return await this._curriculumJobOfferRepository.getById(curriculoId);
+  public async all(): Promise<CurriculoVaga[]> {
+    return await this._curriculumJobOfferRepository.all();
   }
 }

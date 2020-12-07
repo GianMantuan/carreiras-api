@@ -5,8 +5,8 @@ import { checkJwt } from "../middlewares/checkJwt";
 const router = Router();
 const jobOfferTypeController = new JobOfferTypeController();
 
-router.get("/", jobOfferTypeController.all);
-router.post("/", jobOfferTypeController.save);
-router.delete("/:tipoVaga", jobOfferTypeController.delete);
+router.get("/", checkJwt, jobOfferTypeController.all);
+router.post("/", checkJwt, jobOfferTypeController.save);
+router.delete("/:tipoVagaId", checkJwt, jobOfferTypeController.delete);
 
 export default router;

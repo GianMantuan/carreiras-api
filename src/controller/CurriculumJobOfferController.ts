@@ -1,11 +1,23 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
-import CurriculumJobOfferDeleteService from "../services/curriculumJobOffer/CurriculumJobOfferDeleteService";
 
+import CurriculumJobOfferAllService from "../services/curriculumJobOffer/CurriculumJobOfferAllService";
 import CurriculumJobOfferGetByIdService from "../services/curriculumJobOffer/CurriculumJobOfferGetByIdService";
 import CurriculumJobOfferSaveService from "../services/curriculumJobOffer/CurriculumJobOfferSaveService";
+import CurriculumJobOfferDeleteService from "../services/curriculumJobOffer/CurriculumJobOfferDeleteService";
 
 export default class CurriculumJobOfferController {
+  public async all(req: Request, res: Response): Promise<Response> {    
+    try {
+      const curriculumJobOfferSerivce = container.resolve(
+        CurriculumJobOfferAllService
+      );
+      return res.send(await curriculumJobOfferSerivce.all());
+    } catch (error) {
+      return res.status(404).send(error);
+    }
+  }
+  
   public async getById(req: Request, res: Response): Promise<Response> {
     const { curriculoId } = req.params;
     try {

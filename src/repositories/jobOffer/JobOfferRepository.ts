@@ -16,8 +16,14 @@ export default class JobOfferRepository implements IJobOfferRepository {
     return await this._jobOfferRepository.find();
   }
 
+  public async getCurriculumJob(): Promise<Vaga[]> {
+    return await this._jobOfferRepository.find({
+      relations: ["curriculoVaga"]
+    })
+  }
+
   public async getById(curriculoId: number): Promise<Vaga[]> {
-    return await this._jobOfferRepository.find();
+    return await this._jobOfferRepository.find({where: {curriculoId}});
   }
 
   public async add(vagas: IJobOfferDTO): Promise<Vaga> {

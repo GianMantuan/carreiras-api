@@ -14,15 +14,17 @@ export default class CurriculumJobOfferRepository
     this._curriculoJobOfferRepository = getRepository(CurriculoVaga);
   }
 
-  public async getById(curriculoId: number): Promise<CurriculoVaga[]> {
+  public async all(): Promise<CurriculoVaga[]> {    
     return await this._curriculoJobOfferRepository.find({
-      join: {
-        alias: "curriculo",
-      },
+      relations: ["vaga"],
     });
-    // return await this._jobOfferRepository.find({
-    //   relation: ["CurriculumJobOffer"]
-    // });
+  }
+
+  public async getById(curriculoId: number): Promise<CurriculoVaga[]> {    
+    return await this._curriculoJobOfferRepository.find({
+      relations: ["vaga"],
+      where: {curriculoId}
+    });
   }
 
   public async add(

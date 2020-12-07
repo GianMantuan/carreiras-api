@@ -21,7 +21,6 @@ export default class EducationRepository implements IEducationRepository {
   }
 
   public async add(formacao: IEducationDTO): Promise<Formacao> {
-    console.log(formacao)
     return await this._educationRepository.save(formacao);
   }
 
