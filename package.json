@@ -1,7 +1,7 @@
 {
-  "name": "integrado-carreiras",
+  "name": "carreiras-api",
   "version": "1.0.0",
-  "description": "Integrado Carreiras API",
+  "description": "Carreiras API",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/body-parser": "^1.19.0",

@@ -1,3 +1,3 @@
 export default {
-  jwtSecret: "integrado-carreiras",
+  jwtSecret: process.env.JWT_TOKEN,
 };
